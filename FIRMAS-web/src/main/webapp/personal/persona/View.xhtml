@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PersonaViewDlg" widgetVar="PersonaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPersonaTitle}">
+            <h:form id="PersonaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{personaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPersonaLabel_codigo}"/>
+                        <h:outputText value="#{personaController.selected.codigo}" title="#{bundle.ViewPersonaTitle_codigo}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_espprsCodigo}"/>
+                        <h:outputText value="#{personaController.selected.espprsCodigo}" title="#{bundle.ViewPersonaTitle_espprsCodigo}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_apellidos}"/>
+                        <h:outputText value="#{personaController.selected.apellidos}" title="#{bundle.ViewPersonaTitle_apellidos}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_nombres}"/>
+                        <h:outputText value="#{personaController.selected.nombres}" title="#{bundle.ViewPersonaTitle_nombres}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_estadoDeDisponibilidad}"/>
+                        <h:outputText value="#{personaController.selected.estadoDeDisponibilidad}" title="#{bundle.ViewPersonaTitle_estadoDeDisponibilidad}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_cedula}"/>
+                        <h:outputText value="#{personaController.selected.cedula}" title="#{bundle.ViewPersonaTitle_cedula}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_cargo}"/>
+                        <h:outputText value="#{personaController.selected.cargo}" title="#{bundle.ViewPersonaTitle_cargo}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_telefono}"/>
+                        <h:outputText value="#{personaController.selected.telefono}" title="#{bundle.ViewPersonaTitle_telefono}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_direccion}"/>
+                        <h:outputText value="#{personaController.selected.direccion}" title="#{bundle.ViewPersonaTitle_direccion}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_numeroCma}"/>
+                        <h:outputText value="#{personaController.selected.numeroCma}" title="#{bundle.ViewPersonaTitle_numeroCma}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_usuario}"/>
+                        <h:outputText value="#{personaController.selected.usuario}" title="#{bundle.ViewPersonaTitle_usuario}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_permitirTurno}"/>
+                        <h:outputText value="#{personaController.selected.permitirTurno}" title="#{bundle.ViewPersonaTitle_permitirTurno}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_personalCirugia}"/>
+                        <h:outputText value="#{personaController.selected.personalCirugia}" title="#{bundle.ViewPersonaTitle_personalCirugia}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_beneficiario}"/>
+                        <h:outputText value="#{personaController.selected.beneficiario}" title="#{bundle.ViewPersonaTitle_beneficiario}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_codigoCm}"/>
+                        <h:outputText value="#{personaController.selected.codigoCm}" title="#{bundle.ViewPersonaTitle_codigoCm}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_libroMsp}"/>
+                        <h:outputText value="#{personaController.selected.libroMsp}" title="#{bundle.ViewPersonaTitle_libroMsp}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_folioMsp}"/>
+                        <h:outputText value="#{personaController.selected.folioMsp}" title="#{bundle.ViewPersonaTitle_folioMsp}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_numeroMsp}"/>
+                        <h:outputText value="#{personaController.selected.numeroMsp}" title="#{bundle.ViewPersonaTitle_numeroMsp}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_pathFirma}"/>
+                        <h:outputText value="#{personaController.selected.pathFirma}" title="#{bundle.ViewPersonaTitle_pathFirma}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_textoXml}"/>
+                        <h:outputText value="#{personaController.selected.textoXml}" title="#{bundle.ViewPersonaTitle_textoXml}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_cadenaXml}"/>
+                        <h:outputText value="#{personaController.selected.cadenaXml}" title="#{bundle.ViewPersonaTitle_cadenaXml}"/>
+                        <h:outputText value="#{bundle.ViewPersonaLabel_desTextoXml}"/>
+                        <h:outputText value="#{personaController.selected.desTextoXml}" title="#{bundle.ViewPersonaTitle_desTextoXml}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PersonaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPersonaTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+
+
+            <p:separator > 
+            </p:separator >  
+            <p:separator > 
+            </p:separator >     
+
+            <p:separator > 
+            </p:separator >  
+            <p:separator > 
+            </p:separator > 
+
+            <h:form id="PersonaListForm">
+                <p:growl id="growl" life="2000" />
+
+                                                     
+
+
+                <div class="Container100 BorBotLeaden ui-fluid" style="width: 66%;margin-left:15%;margin-right:15%;" >  
+                    <div class="ContainerIndent">  
+                        <p:panel header="Buscar por cédula">			 
+                            <div class="ui-grid ui-grid-responsive">
+                                <div class="ui-grid-row">  
+                                    <div class="ui-panelgrid-cell ui-grid-col-2"> 
+
+                                        <table align="center" style="width: 66%;margin-left:15%;margin-right:15%;"   >
+                                            <tr>
+                                                <td>
+                                                    <p:outputLabel  styleClass="Wid50"  value="Ingrese su cédula:"  />
+                                                    <h:inputText value="#{personaController.cedula}" size="15" />
+                                                </td>
+                                                <td>
+                                                    <p:commandButton value="Buscar" 
+                                                                     process="@form"  id="ajax" update="@form" 
+                                                                     actionListener="#{personaController.buttonAction(actionEvent)}" 
+                                                                     styleClass="ui-icon-searc" />
+                                                    <p:commandButton value="Limpiar" 
+                                                                     process="@form"  id="ajax2" update="@form" 
+                                                                     actionListener="#{personaController.buttonAction2(actionEvent)}" 
+                                                                     styleClass="ui-icon-searc" />
+                                                </td>
+                                                <td>
+
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                    </div> 
+                                    <div class="ui-panelgrid-cell ui-grid-col-4">                                
+
+                                    </div>  
+                                    <div class="ui-panelgrid-cell ui-grid-col-2">                                
+                                    </div>  
+                                    <div class="ui-panelgrid-cell ui-grid-col-4">                                
+                                    </div>  
+                                </div>  
+                            </div>
+                        </p:panel>
+                    </div>  
+                </div>  
+
+                <p:separator > 
+                </p:separator >  
+
+                <div class="Container100 BorBotLeaden ui-fluid" style="width: 66%;margin-left:15%;margin-right:15%;">  
+                    <div class="ContainerIndent">  
+                        <p:panel header="Datos Personales"   >			 
+                            <div class="ui-grid ui-grid-responsive">
+                                <table border="0">
+
+                                    <tbody>
+                                        <tr>
+                                            <td> <p:outputLabel  styleClass="Wid50"  value="Archivo cargado:"  /></td>
+                                            <td> <p:outputLabel  value="#{personaController.digital.nombreArchivo}" title="Cedula" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td> <p:outputLabel  styleClass="Wid50"  value="Código:"  /></td>
+                                            <td> <p:outputLabel id="codigos" value="#{personaController.selected.codigo}" title="Cedula" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td> <p:outputLabel  styleClass="Wid50"  value="Cedula:" for="cedula" /></td>
+                                            <td> <p:outputLabel id="cedula" value="#{personaController.selected.cedula}" title="Cedula" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td><p:outputLabel value="Codigo:" for="codigo" /></td>
+                                            <td>  <p:outputLabel id="codigo" value="#{personaController.selected.codigo}" title="Codigo" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td><p:outputLabel value="Apellidos:" for="apellidos" /></td>
+                                            <td><p:outputLabel id="apellidos" value="#{personaController.selected.apellidos}" title="Apellidos" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td> <p:outputLabel value="Nombres:" for="nombres" /></td>
+                                            <td> <p:outputLabel id="nombres" value="#{personaController.selected.nombres}" title="Nombres" /></td>
+                                        </tr>                                        
+
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+                        </p:panel>
+                    </div>  
+                </div>  
+                <p:separator > 
+                </p:separator >  
+
+
+            </h:form>
+
+            <h:form enctype="multipart/form-data"> 
+                <div class="Container100 BorBotLeaden ui-fluid" style="width: 66%;margin-left:15%;margin-right:15%;">  
+                    <div class="ContainerIndent">  
+                        <p:panel header="Cargue su clave y firma electrónica">			 
+                            <div class="ui-grid ui-grid-responsive">
+                                <div class="ui-grid-row">  
+                                    <table border="0">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <h:outputLabel  value="Clave firma electrónica:" />
+                                                    <h:inputSecret value="#{personaController.clave}"  size="15" />
+
+                                                </td>
+                                                <td>
+                                                    <h:outputLabel  value="Confirme su clave:" />
+                                                    <h:inputSecret value="#{personaController.clave2}" size="15" >                                                       
+
+                                                    </h:inputSecret>
+
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+
+                                    <div class="ui-panelgrid-cell ui-grid-col-2">  
+
+                                    </div> 
+                                    <div class="ui-panelgrid-cell ui-grid-col-4">                                
+                                        <div class="ui-panelgrid-cell ui-grid-col-2">  
+
+                                        </div> 
+                                    </div>  
+                                    <div class="ui-panelgrid-cell ui-grid-col-2"  >
+                                        <table border="0">
+
+                                            <tbody>
+
+                                                <tr>
+
+                                                    <td>       
+                                                        <h:outputLabel for="image" value="Seleccione su archivo: *" />
+                                                        <p:fileUpload value="#{personaController.file}" mode="simple" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/> 
+                                                    </td>
+                                                    <td>                                            
+                                                        <p:commandButton value="Subir" 
+                                                                         ajax="false" 
+                                                                         actionListener="#{personaController.uploadupdate()}"/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>  
+                                    <div class="ui-panelgrid-cell ui-grid-col-4">
+
+                                    </div>  
+                                </div>  
+                            </div>
+                        </p:panel>
+                    </div>  
+                </div>  
+            </h:form>  
+            <p:separator > 
+            </p:separator >  
+        </ui:define>
+    </ui:composition>
+
+</html>
