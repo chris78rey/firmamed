@@ -29,7 +29,7 @@
             <h:form id="PersonaListForm">
                 <p:growl id="growl" life="2000" />
 
-                                                     
+
 
 
                 <div class="Container100 BorBotLeaden ui-fluid" style="width: 66%;margin-left:15%;margin-right:15%;" >  
@@ -50,12 +50,13 @@
                                                                      process="@form"  id="ajax" update="@form" 
                                                                      actionListener="#{personaController.buttonAction(actionEvent)}" 
                                                                      styleClass="ui-icon-searc" />
+
+                                                </td>
+                                                <td>
                                                     <p:commandButton value="Limpiar" 
                                                                      process="@form"  id="ajax2" update="@form" 
                                                                      actionListener="#{personaController.buttonAction2(actionEvent)}" 
                                                                      styleClass="ui-icon-searc" />
-                                                </td>
-                                                <td>
 
                                                 </td>
                                             </tr>
@@ -151,14 +152,6 @@
 
 
                                     <div class="ui-panelgrid-cell ui-grid-col-2">  
-
-                                    </div> 
-                                    <div class="ui-panelgrid-cell ui-grid-col-4">                                
-                                        <div class="ui-panelgrid-cell ui-grid-col-2">  
-
-                                        </div> 
-                                    </div>  
-                                    <div class="ui-panelgrid-cell ui-grid-col-2"  >
                                         <table border="0">
 
                                             <tbody>
@@ -181,6 +174,14 @@
                                                 </tr>
                                             </tbody>
                                         </table>
+
+                                    </div> 
+                                    <div class="ui-panelgrid-cell ui-grid-col-4">                                
+                                        <div class="ui-panelgrid-cell ui-grid-col-2">  
+
+                                        </div> 
+                                    </div>  
+                                    <div class="ui-panelgrid-cell ui-grid-col-2"  >
                                     </div>  
                                     <div class="ui-panelgrid-cell ui-grid-col-4">
 
