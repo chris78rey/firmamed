@@ -2,6 +2,7 @@ package ec.mil.he1;
 
 import ec.mil.he1.util.JsfUtil;
 import ec.mil.he1.util.JsfUtil.PersistAction;
+import he1.seguridades.entities.nuevos.VUsuariosClasif;
 import java.awt.event.ActionEvent;
 import java.io.IOException;
 import java.io.InputStream;
@@ -50,14 +51,23 @@ public class PersonaController implements Serializable {
     }
 
     private String cedula = "";
+    VUsuariosClasif findByCedulaLogin = new VUsuariosClasif();
 
     @PostConstruct
     private void init() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        findByCedulaLogin = (VUsuariosClasif) session.getAttribute("vUsuariosClasif");
         lista = getFindPersonaCriterios("-111");
         Iterator<Persona> iterator = lista.iterator();
         while (iterator.hasNext()) {
             selected = iterator.next();
 
+        }
+        try {
+            cedula = findByCedulaLogin.getCedulaLogin();
+        } catch (Exception e) {
+            Logger.getLogger(PersonaController.class.getName()).log(Level.SEVERE, null, e);
         }
 
     }
@@ -67,6 +77,7 @@ public class PersonaController implements Serializable {
     private Persona persona = new Persona();
 
     public PersonaController() {
+
     }
 
     public Persona getSelected() {
@@ -273,6 +284,66 @@ public class PersonaController implements Serializable {
         session.setAttribute("cedula", cedula);
 
         List<MedFirma> findPersonaCriteriosCCDigi = medFirmaFacade.findPersonaCriteriosCC(cedula);
+        Iterator<MedFirma> iteratordigi = findPersonaCriteriosCCDigi.iterator();
+
+        while (iteratordigi.hasNext()) {
+            digital = iteratordigi.next();
+
+        }
+
+        try {
+            selected = new Persona();
+            lista = getFindPersonaCriterios(cedula);
+            Iterator<Persona> iterator = lista.iterator();
+            while (iterator.hasNext()) {
+                selected = iterator.next();
+
+            }
+
+            List<MedFirma> findPersonaCriteriosCC = medFirmaFacade.findPersonaCriteriosCC(cedula);
+            //si esta vacia la lista se debe crear el registro en medfirma
+            if (findPersonaCriteriosCC.isEmpty()) {
+                medFirma.setCedula(cedula);
+                medFirma.setNombres(selected.getNombres());
+                medFirma.setApellidos(selected.getApellidos());
+                medFirmaFacade.create(medFirma);
+            } else {
+                List<MedFirma> findPersonaCriterios = medFirmaFacade.findPersonaCriteriosCC(cedula);
+                Iterator<MedFirma> iterator1 = findPersonaCriterios.iterator();
+                while (iterator1.hasNext()) {
+                    medFirma = iterator1.next();
+                }
+            }
+
+            lista = new ArrayList<>();
+
+        } catch (Exception e) {
+            Logger.getLogger(PersonaController.class.getName()).log(Level.SEVERE, null, e);
+        }
+
+        try {
+            List<MedFirma> findPersonaCriteriosCC = medFirmaFacade.findPersonaCriteriosCC(cedula);
+            Iterator<MedFirma> iterator1 = findPersonaCriteriosCC.iterator();
+            while (iterator1.hasNext()) {
+                medFirma = iterator1.next();
+
+            }
+        } catch (Exception e) {
+            Logger.getLogger(PersonaController.class.getName()).log(Level.SEVERE, null, e);
+        }
+
+    }
+
+    public void encuentraCedula() {
+
+        MedFirma medFirma = new MedFirma();
+        digital.setNombreArchivo("");
+
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        session.setAttribute("cedula", (findByCedulaLogin.getCedulaLogin() == null) ? "-11" : findByCedulaLogin.getCedulaLogin());
+
+        List<MedFirma> findPersonaCriteriosCCDigi = medFirmaFacade.findPersonaCriteriosCC(findByCedulaLogin.getCedulaLogin());
         Iterator<MedFirma> iteratordigi = findPersonaCriteriosCCDigi.iterator();
 
         while (iteratordigi.hasNext()) {

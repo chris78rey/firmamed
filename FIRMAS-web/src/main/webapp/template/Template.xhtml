@@ -1,0 +1,312 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      >
+
+    <f:view contentType="text/html">
+        <h:head>
+            <h:head>
+                <f:facet name="first">
+                    <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                    <title>HOSPITAL DE ESPECIALIDADES DE LAS FUERZAS ARMADAS Nº1</title>
+                    <link type="text/css" rel="stylesheet" href="/project/faces/javax.faces.resource/theme.css?ln=cupertino" />
+                </f:facet>
+            </h:head>
+        </h:head>
+
+        <h:body>
+
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north"    size="27%"  resizable="false" closable="true" collapsible="true">
+                    <center>
+                        <p:panel  style="background-color:#c2dfef;height: 75%;width: 75%;">
+                            <center>
+                                <p:graphicImage  url="/resources/images/banner_he_1.png"/>                              
+
+                            </center>
+                        </p:panel>
+
+                        <br/>
+
+                    </center>
+                </p:layoutUnit>
+
+              
+
+
+
+                <p:layoutUnit position="west" size="10%" style="font-size: 13px;"      collapsible="false">
+                    <ui:insert name="west">
+                        <script type="text/javascript">
+                            $(document).ready(function () {
+                                $(".ui-panelmenu-content").css("display", "block"); //shows the menuitems
+                                $(".ui-panelmenu-header").addClass("ui-state-active"); //sets the submenu header to active state
+                                $(".ui-icon-triangle-1-e").removeClass("ui-icon-triangle-1-e").addClass("ui-icon-triangle-1-s"); //sets the triangle icon to "expaned" state
+                            }
+                            );
+                        </script>
+                        <h:form id="formatemplatewest"  >
+
+
+
+                            <p:growl id="growl" life="2000" />  
+                            <p:growl id="messages" showDetail="false"/>
+
+
+                            <p:panelMenu id="pm001"  style="width:300px;font-size: 13px">
+
+                                <p:submenu id="sm1" label="Menú">
+                                    <p:menuitem style="font-size: 10px;"  value="Firma Electónica" action="/template/Template.xhtml"  />
+                                </p:submenu>
+
+
+                            </p:panelMenu>
+
+
+
+                        </h:form>
+
+                    </ui:insert>
+                </p:layoutUnit>
+
+
+
+
+
+                <p:layoutUnit position="center">
+
+                    <center>
+                        <h:form id="formatemplatecenter">
+
+
+                            <table border="0"  style="width: 66%;margin-left:15%;margin-right:15%;" cellpadding="1">
+                                <tbody>
+                                    <tr>
+                                        <td>  
+                                            <p:outputLabel value="Cedula:#{mbpersonal.findByCedulaLogin.cedulaLogin}"/>
+                                        </td>
+                                        <td>
+                                            <p:outputLabel value="Nombres:#{mbpersonal.findByCedulaLogin.nombres}"/>
+                                        </td>
+                                        <td>
+                                            <p:outputLabel value="Apellidos:#{mbpersonal.findByCedulaLogin.apellidos}"/>
+                                        </td>
+                                        <td>
+                                            <p:commandLink action="#{mbpersonal.regresaMenuPortal()}" >
+                                                <p:graphicImage value="#{resource['images/menu1.jpg']}" style="width: 65px; height: 50px"/>
+                                                <p:effect type="pulsate" event="click" />
+                                            </p:commandLink>
+
+                                        </td>
+                                        <td>
+                                            <p:commandLink action="#{mbpersonal.logout()}" >
+                                                <p:graphicImage value="#{resource['images/salir.jpg']}" style="width: 65px; height: 50px"/>
+                                                <p:effect type="pulsate" event="click" />
+                                            </p:commandLink>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+
+
+
+                        </h:form>
+                        <br/>
+                        <br/>
+                        <ui:insert name="center">
+
+
+
+                            <p:separator > 
+                            </p:separator >  
+                            <p:separator > 
+                            </p:separator > 
+
+                            <h:form id="PersonaListForm">
+                                <p:growl id="growl" life="2000" />
+
+
+                                <a href="http://servicios.he1.mil.ec">Regresar al portal</a>
+
+                                <div class="Container100 BorBotLeaden ui-fluid" style="width: 66%;margin-left:15%;margin-right:15%;" >  
+                                    <div class="ContainerIndent">  
+                                        <p:panel header="Buscar por cédula">			 
+                                            <div class="ui-grid ui-grid-responsive">
+                                                <div class="ui-grid-row">  
+                                                    <div class="ui-panelgrid-cell ui-grid-col-2"> 
+
+                                                        <table align="center" style="width: 66%;margin-left:15%;margin-right:15%;"   >
+                                                            <tr>
+                                                                <td>
+                                                                    <p:outputLabel  styleClass="Wid50"  value="Ingrese su cédula:"  />
+                                                                    <h:inputText value="#{personaController.cedula}" disabled="true" size="15" />
+                                                                </td>
+                                                                <td>
+                                                                    <p:commandButton value="Buscar" 
+                                                                                     process="@form"  id="ajax" update="@form" 
+                                                                                     actionListener="#{personaController.buttonAction(actionEvent)}" 
+                                                                                     styleClass="ui-icon-searc" />
+
+                                                                </td>
+                                                                <td>
+                                                           
+
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+
+                                                    </div> 
+                                                    <div class="ui-panelgrid-cell ui-grid-col-4">                                
+
+                                                    </div>  
+                                                    <div class="ui-panelgrid-cell ui-grid-col-2">                                
+                                                    </div>  
+                                                    <div class="ui-panelgrid-cell ui-grid-col-4">                                
+                                                    </div>  
+                                                </div>  
+                                            </div>
+                                        </p:panel>
+                                    </div>  
+                                </div>  
+
+                                <p:separator > 
+                                </p:separator >  
+
+                                <div class="Container100 BorBotLeaden ui-fluid" style="width: 66%;margin-left:15%;margin-right:15%;">  
+                                    <div class="ContainerIndent">  
+                                        <p:panel header="Datos Personales"   >			 
+                                            <div class="ui-grid ui-grid-responsive">
+                                                <table border="0">
+
+                                                    <tbody>
+                                                        <tr>
+                                                            <td> <p:outputLabel  styleClass="Wid50"  value="Archivo cargado:"  /></td>
+                                                            <td> <p:outputLabel  value="#{personaController.digital.nombreArchivo}" title="Cedula" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> <p:outputLabel  styleClass="Wid50"  value="Código:"  /></td>
+                                                            <td> <p:outputLabel id="codigos" value="#{personaController.selected.codigo}" title="Cedula" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> <p:outputLabel  styleClass="Wid50"  value="Cedula:" for="cedula" /></td>
+                                                            <td> <p:outputLabel id="cedula" value="#{personaController.selected.cedula}" title="Cedula" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><p:outputLabel value="Codigo:" for="codigo" /></td>
+                                                            <td>  <p:outputLabel id="codigo" value="#{personaController.selected.codigo}" title="Codigo" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><p:outputLabel value="Apellidos:" for="apellidos" /></td>
+                                                            <td><p:outputLabel id="apellidos" value="#{personaController.selected.apellidos}" title="Apellidos" /></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> <p:outputLabel value="Nombres:" for="nombres" /></td>
+                                                            <td> <p:outputLabel id="nombres" value="#{personaController.selected.nombres}" title="Nombres" /></td>
+                                                        </tr>                                        
+
+                                                    </tbody>
+                                                </table>
+
+
+                                            </div>
+                                        </p:panel>
+                                    </div>  
+                                </div>  
+                                <p:separator > 
+                                </p:separator >  
+
+
+                            </h:form>
+
+                            <h:form enctype="multipart/form-data"> 
+                                <div class="Container100 BorBotLeaden ui-fluid" style="width: 66%;margin-left:15%;margin-right:15%;">  
+                                    <div class="ContainerIndent">  
+                                        <p:panel header="Cargue su clave y firma electrónica">			 
+                                            <div class="ui-grid ui-grid-responsive">
+                                                <div class="ui-grid-row">  
+                                                    <table border="0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>
+                                                                    <h:outputLabel  value="Clave firma electrónica:" />
+                                                                    <h:inputSecret value="#{personaController.clave}"  size="15" />
+
+                                                                </td>
+                                                                <td>
+                                                                    <h:outputLabel  value="Confirme su clave:" />
+                                                                    <h:inputSecret value="#{personaController.clave2}" size="15" >                                                       
+
+                                                                    </h:inputSecret>
+
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+
+
+                                                    <div class="ui-panelgrid-cell ui-grid-col-2">  
+                                                        <table border="0">
+
+                                                            <tbody>
+
+                                                                <tr>
+
+                                                                    <td>       
+                                                                        <h:outputLabel for="image" value="Seleccione su archivo: *" />
+                                                                        <p:fileUpload value="#{personaController.file}" mode="simple" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/> 
+                                                                    </td>
+                                                                    <td>                                            
+                                                                        <p:commandButton value="Subir" 
+                                                                                         ajax="false" 
+                                                                                         actionListener="#{personaController.uploadupdate()}"/>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+
+                                                    </div> 
+                                                    <div class="ui-panelgrid-cell ui-grid-col-4">                                
+                                                        <div class="ui-panelgrid-cell ui-grid-col-2">  
+
+                                                        </div> 
+                                                    </div>  
+                                                    <div class="ui-panelgrid-cell ui-grid-col-2"  >
+                                                    </div>  
+                                                    <div class="ui-panelgrid-cell ui-grid-col-4">
+
+                                                    </div>  
+                                                </div>  
+                                            </div>
+                                        </p:panel>
+                                    </div>  
+                                </div>  
+                            </h:form>  
+                            <p:separator > 
+                            </p:separator >  
+
+
+                        </ui:insert>
+                    </center>
+
+                </p:layoutUnit>
+
+
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+

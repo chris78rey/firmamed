@@ -6,7 +6,10 @@
 package he1.seguridades.sessions;
 
 import he1.seguridades.entities.SegUsuario;
+import java.sql.CallableStatement;
 import java.sql.SQLException;
+import java.sql.Types;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.naming.NamingException;
 import javax.persistence.EntityManager;
