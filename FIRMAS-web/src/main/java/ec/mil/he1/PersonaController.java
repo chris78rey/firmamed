@@ -263,7 +263,7 @@ public class PersonaController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Persona) {
+            if (object instanceof Persona) {  
                 Persona o = (Persona) object;
                 return getStringKey(o.getCodigo());
             } else {
