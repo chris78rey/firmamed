@@ -51,7 +51,7 @@ public class JSFManagedBeanPersonal {
     private SegMinisterioFinanzasFacade segMinisterioFinanzasFacade;
 
     @EJB
-    private SesionSeguridades sesionSeguridades;
+    private SesionSeguridades sesionSeguridades;   
 
     @EJB
     private PersonalFacade personalFacade;

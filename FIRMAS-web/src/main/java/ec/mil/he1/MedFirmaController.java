@@ -22,7 +22,7 @@ import javax.faces.convert.FacesConverter;
 public class MedFirmaController implements Serializable {
 
     @EJB
-    private PersonaFacade personaFacade;
+    private PersonaFacade2 personaFacade;
 
 
     @EJB

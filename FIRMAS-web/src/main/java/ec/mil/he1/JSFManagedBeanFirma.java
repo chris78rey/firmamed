@@ -25,7 +25,7 @@ import javax.faces.context.FacesContext;
 public class JSFManagedBeanFirma implements Serializable {
 
     @EJB
-    private PersonaFacade personaFacade;
+    private PersonaFacade2 personaFacade;
 
 
 

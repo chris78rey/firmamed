@@ -42,7 +42,7 @@ public class PersonaController implements Serializable {
     private MedFirmaFacade medFirmaFacade;
 
     @EJB
-    private ec.mil.he1.PersonaFacade ejbFacade;
+    private ec.mil.he1.PersonaFacade2 ejbFacade;
 
     private List<Persona> lista = new ArrayList<>();
 
@@ -63,11 +63,6 @@ public class PersonaController implements Serializable {
         while (iterator.hasNext()) {
             selected = iterator.next();
 
-        }
-        try {
-            cedula = findByCedulaLogin.getCedulaLogin();
-        } catch (Exception e) {
-            Logger.getLogger(PersonaController.class.getName()).log(Level.SEVERE, null, e);
         }
 
     }
@@ -94,7 +89,7 @@ public class PersonaController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private PersonaFacade getFacade() {
+    private PersonaFacade2 getFacade() {
         return ejbFacade;
     }
 
@@ -263,7 +258,7 @@ public class PersonaController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Persona) {  
+            if (object instanceof Persona) {
                 Persona o = (Persona) object;
                 return getStringKey(o.getCodigo());
             } else {
@@ -276,11 +271,21 @@ public class PersonaController implements Serializable {
     private MedFirma digital = new MedFirma();
 
     public void buttonAction(ActionEvent actionEvent) {
-        MedFirma medFirma = new MedFirma();
-        digital.setNombreArchivo("");
 
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        VUsuariosClasif vUsuariosClasif = new VUsuariosClasif();
+
+        try {
+            vUsuariosClasif = (VUsuariosClasif) session.getAttribute("vUsuariosClasif");
+            cedula = vUsuariosClasif.getCedulaLogin();
+        } catch (Exception e) {
+            Logger.getLogger(PersonaController.class.getName()).log(Level.SEVERE, null, e);
+        }
+
+        MedFirma medFirma = new MedFirma();
+        digital.setNombreArchivo("");
+
         session.setAttribute("cedula", cedula);
 
         List<MedFirma> findPersonaCriteriosCCDigi = medFirmaFacade.findPersonaCriteriosCC(cedula);

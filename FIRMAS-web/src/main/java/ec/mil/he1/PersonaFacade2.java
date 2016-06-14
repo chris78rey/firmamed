@@ -20,7 +20,7 @@ import javax.persistence.criteria.Root;
  * @author christian_ruiz
  */
 @Stateless
-public class PersonaFacade extends AbstractFacade<Persona> {
+public class PersonaFacade2 extends AbstractFacade<Persona> {
 
     @PersistenceContext(unitName = "ec.mil.he1_FIRMAS-web_war_1.0PU")
     private EntityManager em;
@@ -30,7 +30,7 @@ public class PersonaFacade extends AbstractFacade<Persona> {
         return em;
     }
 
-    public PersonaFacade() {
+    public PersonaFacade2() {
         super(Persona.class);
     }
 
